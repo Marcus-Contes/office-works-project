@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Cadastro de Usuário</title>
+		<link rel="stylesheet" type="text/css" href="estilos.css">
+	</head>
+	<body>
+		<!-- Cabeçalho do website -->
+		<header>
+			<h1>Office Works</h1>
+			<h2>Soluções Inteligentes para Escritórios Comerciais</h2>
+		</header>
+		
+		<!-- Menu de navegação do website -->
+		<nav>
+			<a href="index.html">Início</a>
+			<a href="sobre.html">Sobre</a>
+			<a href="usuario.html">Cadastro</a>
+			<a class="link-login" href="login.html">Login</a>
+		</nav>
+		
+		<!-- Banner do website -->
+		<div class="container-banner">
+			<img class="banner" src="images/office-works-banner.png">
+		</div>
+		
+		<!-- Seção do formulário de cadastro de usuário -->
+		<section class="container">
+
+			<!-- Formulário de cadastro de usuário -->
+			<form class="card" method="post" name="usuario">
+
+				<!-- Cabeçalho do formulário -->
+				<div class="card-header">
+					<img src="images/register-avatar.png" alt="Avatar do Usuário" class="card-avatar">
+					<h1>Cadastro de Usuário</h1>
+				</div>
+
+				<!-- Campos do formulário de login -->
+				<div class="card-body">
+				
+					<!-- Nome do usuário -->
+					<label class="card-label" for="nome">Nome</label>
+					<input id="nome" class="card-field" type="text" name="nome" maxlength="48" required>
+					
+					<!-- CPF do usuário -->
+					<label class="card-label" for="cpf">CPF</label>
+					<input id="cpf" class="card-field" type="text" name="cpf" minlength="14" maxlength="14" required>
+					
+					<!-- Data de nascimento do usuário -->
+					<label class="card-label" for="cpf">Nascimento</label>
+					<input id="nascimento" class="card-field" type="date" name="nascimento" required>
+					
+					<!-- CEP residencial do usuário -->
+					<label class="card-label" for="cep">CEP</label>
+					<input id="cep" class="card-field" type="text" name="cep" minlength="9" maxlength="9" required>
+					
+					<!-- Logradouro residencial do usuário -->
+					<label class="card-label" for="logradouro">Logradouro</label>
+					<input id="logradouro" class="card-field" type="text" name="logradouro" maxlenght="48" required>
+					
+					<!-- Número do logradouro do usuário -->
+					<label class="card-label" for="numero">Número</label>
+					<input id="numero" class="card-field" type="number" name="numero" max="1000000" required>
+					
+					<!-- Bairro do logradouro do usuário -->
+					<label class="card-label" for="bairro">Bairro</label>
+					<input id="bairro" class="card-field" type="text" name="bairro" maxlenght="48" required>
+					
+					<!-- Cidade do logradouro do usuário -->
+					<label class="card-label" for="cidade">Cidade</label>
+					<input id="cidade" class="card-field" type="text" name="cidade" maxlenght="48" required>
+					
+					<!-- Estado do logradouro do usuário -->
+					<label class="card-label" for="estado">Estado</label>
+					<input id="estado" class="card-field" type="text" name="estado" maxlenght="48" required>
+					
+					<!-- Celular do usuário -->
+					<label class="card-label" for="celular">Celular</label>
+					<input id="celular" class="card-field" type="text" name="celular" maxlenght="16" required>
+					
+					<!-- E-mail do usuário -->
+					<label class="card-label" for="email">E-mail</label>
+					<input id="email" class="card-field" type="email" name="email" minlength="4" maxlength="48" required>
+					
+					<!-- Senha do usuário -->
+					<label class="card-label" for="senha">Senha</label>
+					<input id="senha" class="card-field" type="password" name="senha" minlength="8" maxlength="32" required>
+					
+					<!-- Confirmação da senha do usuário -->
+					<label class="card-label" for="confirma">Repita a Senha</label>
+					<input id="confirma" class="card-field" type="password" name="confirma" minlength="8" maxlength="32" required>
+				
+					<button class="card-button" type="Submit">Cadastrar</button>
+				</div>
+
+				<!-- Link para as páginas externas -->
+				<div class="card-footer">
+					<span class="card-link"><a href="login.html">&#8249 Login</a></span> 
+				</div>
+				
+			</form>
+
+		</section>
+		
+		<!-- Rodapé do website -->
+		<footer>
+			<h3>Office Works</h3>
+			<p>Botucatu, São Paulo - <span id="year">#</span></p>
+		</footer>
+		
+		<!-- Recupera o ano da data de hoje via JavaScript -->
+		<script>
+			//Carrega a data de hoje em uma variável.
+			var dataHoje = new Date();
+			var ano = dataHoje.getFullYear();
+			
+			//Exibe a data de hoje no elemento SPAN do HTML.
+			document.getElementById('year').innerHTML = ano; 
+			
+			//Carrega o conteúdo digitado pelo usuário no campo CPF.
+			var CPF = document.querySelector("#cpf");
+				
+			//Evento que cria a mascara do CPF.
+			CPF.addEventListener("blur", function(){
+				if(CPF.value) CPF.value = CPF.value.match(/.{1,3}/g).join(".").replace(/\.(?=[^.]*$)/,"-");
+			});
+			
+			//Carrega o conteúdo digitado pelo usuário no campo Confirma Senha.
+			var confirmaSenha = document.querySelector("#confirma");
+				
+			//Evento que compara as senhas.
+			confirmaSenha.addEventListener("blur", function(){
+			
+				//Carrega as duas senhas em variáveis.
+				var senha = document.getElementById("senha").value;
+				var confirmaSenha = document.getElementById("confirma").value;
+				
+				//Verifica se as senhas são diferentes.
+				if (senha != confirmaSenha){
+					alert("As senhas digitadas não conferem!!!");
+					document.getElementById("senha").focus;
+				}
+			});
+		</script>
+	</body>
+</html>										
